@@ -17,6 +17,9 @@ app.get('/', (req, res) => {
     res.send('Hello');
 });
 
+app.listen(PORT, () => console.log(`Servidor No PORT: http://localhost:${PORT}`));
+
+
 // DB conexão//
 mongoose.connect(
 "mongodb+srv://biandito:pcxByU2JeIyjmVA8@cluster0.660p8xj.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp").then(
