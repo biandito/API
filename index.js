@@ -18,3 +18,10 @@ app.get('/', (req, res) => {
 });
 
 app.listen(PORT, () => console.log(`Servidor No PORT: http://localhost:${PORT}`));
+
+// DB conexão//
+
+const conn = require ("./db/conn.js");
+
+conn();
+// pcxByU2JeIyjmVA8 //

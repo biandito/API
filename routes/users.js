@@ -10,12 +10,17 @@ const users = [{
      userstatus:"ativo",
      tipo:"tipo",}
 ]
+
+//get//
+
 router.get('/', (req, res) => {
      console.log(users);
      res.send(users);
     });
 
+//post//
+
     router.post('/', (req, res) => {
-       
+  
      });
     export default router;
