@@ -1,6 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-
+import mongoose from 'mongoose';
 // import usuarios //
 import usuariosRoutes from './routes/users.js';
 
@@ -17,11 +17,8 @@ app.get('/', (req, res) => {
     res.send('Hello');
 });
 
-app.listen(PORT, () => console.log(`Servidor No PORT: http://localhost:${PORT}`));
-
 // DB conexão//
-
-const conn = require ("./db/conn.js");
-
-conn();
-// pcxByU2JeIyjmVA8 //
+mongoose.connect(
+"mongodb+srv://biandito:pcxByU2JeIyjmVA8@cluster0.660p8xj.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp").then(
+() => console.log("Bd conectado"))
+.catch (() => console.log("Deu erro"))
