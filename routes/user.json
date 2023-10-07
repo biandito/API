@@ -1,8 +1,0 @@
-{
-    "id": "01" ,
-    "nome": "Nome",
-    "email": "email@email.com",
-    "senha" : "senha",
-    "userstatus":"ativo",
-    "tipo":"tipo"
-}

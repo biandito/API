@@ -1,26 +1,31 @@
-import express from 'express';
+const mongoose = require('mongoose');
+const router = require('express').Router();
 
-const router = express.Router();
-
-const users = [{
-     id: "01" ,
-     nome: "Nome",
-     email: "email@email.com",
-     senha: "senha",
-     userstatus:"ativo",
-     tipo:"tipo",}
-]
-
-//get//
-
-router.get('/', (req, res) => {
-     console.log(users);
-     res.send(users);
-    });
-
-//post//
-
-    router.post('/', (req, res) => {
+const Users = require('../models/users')
+router.post('/', async (req, res) => {
   
-     });
-    export default router;
+const { id,nome,email,senha,userstatus,tipo } = req.body
+if (!nome || !email || !senha) {
+     res.status(422).json({error: 'Campo obrigatório'})
+}
+
+const users = {
+     id,
+     nome,
+     email,
+     senha,
+     userstatus,
+     tipo,
+}
+
+try {
+     await Users.create(users)
+     res.status(201).json({message:'Usuário cadastrado.'})
+}
+catch (error) {
+     res.status(500).json({error: error})
+}
+
+});
+ 
+module.exports = router

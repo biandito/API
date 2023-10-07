@@ -1,27 +1,33 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import mongoose from 'mongoose';
-// import usuarios //
-import usuariosRoutes from './routes/users.js';
-
-// criaçao api //
+const express = require('express');
 const app = express();
+const mongoose = require('mongoose');
+// middlewares //
+app.use(express.urlencoded({extended: true,})),
+app.use(express.json())
+
+// criaçao porta //
+
 const PORT = 5000;
 
-app.use(bodyParser.json());
-app.use('/users', usuariosRoutes);
-
-//homepage teste //
+//homepage //
 app.get('/', (req, res) => { 
-    console.log('TEST'); 
-    res.send('Hello');
+    res.send('Home Page');
 });
 
-app.listen(PORT, () => console.log(`Servidor No PORT: http://localhost:${PORT}`));
+// endpoints API //
+const users = require('./routes/users')
+app.use('/users', users)
 
+// porta teste //
+// app.listen(PORT, () => console.log(`Servidor No PORT: http://localhost:${PORT}`));
 
-// DB conexão//
-mongoose.connect(
-"mongodb+srv://biandito:pcxByU2JeIyjmVA8@cluster0.660p8xj.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp").then(
-() => console.log("Bd conectado"))
-.catch (() => console.log("Deu erro"))
+// mongodb //
+mongoose.
+connect('mongodb+srv://biandito:g0xYKCzIsX7N8fsY@cluster0.1nmalzc.mongodb.net/?retryWrites=true&w=majority')
+.then (() => { 
+    app.listen(5000)
+    console.log('Conexão realizada com sucesso')
+ })
+ .catch((erro) => console.log(erro))
+
+ // senha g0xYKCzIsX7N8fsY //
