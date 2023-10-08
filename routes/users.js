@@ -24,11 +24,21 @@ try {
      res.status(201).json({message:'Usuário cadastrado.'})
 }
 catch (error) {
-     res.status(500).json({error: error})
+     res.status(500).json({error:'error'})
 }
 
 });
 
+// login 
+
+router.post('/login', async (req,res) => { 
+     const {email,senha} = req.body
+     if (!email || !senha) {
+          res.status(422).json({error:'Campo obrigatório'})
+     } else {
+          res.status(200).json({message:'Login efetuado'})
+     }
+ })
 // le dados //
 router.get('/', async (req,res) => {
      try {
@@ -56,4 +66,6 @@ router.get('/:id', async (req,res) =>
  })
 
 })
+
+
 module.exports = router
