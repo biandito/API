@@ -2,9 +2,11 @@ const mongoose = require('mongoose');
 const router = require('express').Router();
 
 const Users = require('../models/users')
-router.post('/', async (req, res) => {
+
+//cadastra usuario//
+router.post('/signup', async (req, res) => {
   
-const { id,nome,email,senha,userstatus,tipo } = req.body
+const {nome,email,senha,userstatus,tipo } = req.body
 if (!nome || !email || !senha) {
      res.status(422).json({error: 'Campo obrigatório'})
 }
@@ -27,5 +29,32 @@ catch (error) {
 }
 
 });
- 
+
+// le dados //
+router.get('/', async (req,res) => {
+     try {
+          const users = await Users.find()
+          res.status(200).json(users)
+     } catch (error) {
+          res.status(500).json({error: error})
+
+     }
+// id //
+
+router.get('/:id', async (req,res) => 
+{ 
+     const id= req.params.id
+     try  {
+          const users = await Users.findOne({_id: id})
+          if  (!users) {
+               res.status(422).json({message: 'Usuário não cadastrado'})
+          }
+          res.status(200).json(users)
+     } catch (error) {
+          res.status(500).json({error: error})
+
+     } 
+ })
+
+})
 module.exports = router
