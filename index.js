@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 
 // endpoints API //
 
-//usuários //
+//usuarios //
 const users = require('./routes/users')
 app.use('/users', users)
 

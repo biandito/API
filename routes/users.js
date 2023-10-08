@@ -67,5 +67,27 @@ router.get('/:id', async (req,res) =>
 
 })
 
+// (soft delete)
+router.delete('/:id', async (req, res) => {
+     const id = req.params.id;
+   
+     try {
+       const user = await Users.findOne({ _id:userId});
+   
+       if (!user) {
+         return res.status(422).json({ message:'Usuário não existe'});
+       }
+   
+       user.userstatus = false;
+   
+       await user.save();
+   
+       res.status(200).json({ message: 'Usuário deletado' });
+     } catch (error) {
+       res.status(500).json({ error: error.message });
+     }
+   });
+   
+
 
 module.exports = router
