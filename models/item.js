@@ -1,21 +1,14 @@
 import mongoose from "mongoose";
 
-const itemSchema = new mongoose.Schema({
-  titulo: {
-    type: String,
-    required: true,
-  },
+const Item = mongoose.model('Item', {
+  titulo: String,
   autor: String,
   categoria: String,
   preco: Number,
   descricao: String,
-  status: {
-    type: String,
-    enum: ['ativo', 'inativo'],
-    default: 'ativo',
-  },
+  status: Boolean,
+  
 });
 
-const Item = mongoose.model('Item', itemSchema);
 
 module.exports = Item;
