@@ -3,7 +3,7 @@ const router = require('express').Router();
 
 const Users = require('../models/users')
 
-//cadastra usuario//
+//cadastra usuario users/signup //
 router.post('/signup', async (req, res) => {
   
 const {nome,email,senha,userstatus,tipo } = req.body
@@ -12,7 +12,6 @@ if (!nome || !email || !senha) {
 }
 
 const users = {
-     id,
      nome,
      email,
      senha,
@@ -39,7 +38,7 @@ router.get('/', async (req,res) => {
           res.status(500).json({error: error})
 
      }
-// id //
+// id do usuario unico mongodb//
 
 router.get('/:id', async (req,res) => 
 { 

@@ -1,6 +1,10 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+require('dotenv').config()
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+
 // middlewares //
 app.use(express.urlencoded({extended: true,})),
 app.use(express.json())
@@ -11,12 +15,18 @@ const PORT = 5000;
 
 //homepage //
 app.get('/', (req, res) => { 
-    res.send('Home Page');
+    res.status(200).json({mensagem: 'Home Page'});
 });
 
 // endpoints API //
+
+//usuários //
 const users = require('./routes/users')
 app.use('/users', users)
+
+//administradores//
+const admin = require('./routes/admin');
+app.use('/admin', admin);
 
 // porta teste //
 // app.listen(PORT, () => console.log(`Servidor No PORT: http://localhost:${PORT}`));
@@ -30,4 +40,3 @@ connect('mongodb+srv://biandito:g0xYKCzIsX7N8fsY@cluster0.1nmalzc.mongodb.net/?r
  })
  .catch((erro) => console.log(erro))
 
- // senha g0xYKCzIsX7N8fsY //
