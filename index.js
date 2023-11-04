@@ -29,6 +29,10 @@ app.use('/users', users)
 const admin = require('./routes/admin');
 app.use('/admin', admin);
 
+// itens //
+const items = require('./routes/items');
+app.use('/items', items);
+
 // porta teste //
 // app.listen(PORT, () => console.log(`Servidor No PORT: http://localhost:${PORT}`));
 
