@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const Item = mongoose.model('Item', {
+  id: Number,
   titulo: String,
   autor: String,
   categoria: String,
