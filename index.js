@@ -4,10 +4,11 @@ const mongoose = require('mongoose');
 require('dotenv').config()
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-
 // middlewares //
 app.use(express.urlencoded({extended: true,})),
 app.use(express.json())
+
+
 
 // criaçao porta //
 

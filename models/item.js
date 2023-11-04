@@ -6,7 +6,8 @@ const Item = mongoose.model('Item', {
   categoria: String,
   preco: Number,
   descricao: String,
-  status: Boolean,
+  status: String,
+  vendedor: String
   
 });
 

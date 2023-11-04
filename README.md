@@ -1,5 +1,5 @@
 Ferramentas
-- NPM = nodejs, express, nodemon mongodb, mongoose, bcrypt, dotenv, jsonwebtoken
+- NPM = nodejs, express, nodemon mongodb, mongoose, bcrypt, dotenv, jsonwebtoken,, swagger-jsdoc, swagger-ui-express
 - POSTMAN 
 - MongoDB:
 Login: biandito

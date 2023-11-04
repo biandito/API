@@ -3,7 +3,36 @@ const router = require('express').Router();
 
 const Users = require('../models/users')
 
-//cadastra usuario users/signup //
+// USERS //
+// SIGN UP //
+/**
+ * /users/signup:
+ *   post
+ *   tags:
+ *     - Usuário
+ *     description: Cadastra um novo usuário no sistema.
+ *      - application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               nome:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               senha:
+ *                 type: string
+ *               userstatus:
+ *                 type: boolean
+ *               tipo:
+ *                 type: string
+ *     responses:
+ *       '201':
+ *         description: Usuário cadastrado com sucesso.
+ *       '422':
+ *         description: Campos obrigatórios não preenchidos.
+ *       '500':
+ *         description: Erro interno do servidor.
+ */
 router.post('/signup', async (req, res) => {
   
 const {nome,email,senha,userstatus,tipo } = req.body
@@ -29,7 +58,27 @@ catch (error) {
 
 });
 
-// login 
+/**
+ * /users/login:
+ *   post:
+ *     summary: Efetua login de usuário.
+ *     description: Realiza a autenticação do usuário no sistema.
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *               senha:
+ *                 type: string
+ *     responses:
+ *       '200':
+ *         description: Login efetuado com sucesso.
+ *       '422':
+ *         description: Campos obrigatórios não preenchidos.
+ */
 
 router.post('/login', async (req,res) => { 
      const {email,senha} = req.body
@@ -67,8 +116,29 @@ router.get('/:id', async (req,res) =>
 
 })
 
-// (soft delete)
-router.delete('/:id', async (req, res) => {
+/** soft delete
+ * @swagger
+ * /users/{id}:
+ *   delete:
+ *     summary: Desativa um usuário.
+ *     description: Desativa um usuário existente no sistema através do seu ID.
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID do usuário a ser desativado.
+ *     responses:
+ *       '200':
+ *         description: Usuário desativado com sucesso.
+ *       '422':
+ *         description: Usuário não existe.
+ *       '500':
+ *         description: Erro interno no servidor.
+ */
+
+   router.delete('/:id', async (req, res) => {
      const id = req.params.id;
    
      try {

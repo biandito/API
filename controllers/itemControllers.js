@@ -1,6 +1,5 @@
-const Item = require('../models/item'); // Importe o modelo de Produto
+const Item = require('../models/item');
 
-// Função para adicionar um novo produto
 exports.addItem = async (req, res) => {
   try {
     const { titulo, autor, categoria, preco, descricao } = req.body;
@@ -23,4 +22,3 @@ exports.addItem = async (req, res) => {
   }
 };
 
-// Outras funções controladoras relacionadas aos produtos podem ser adicionadas aqui

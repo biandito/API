@@ -21,7 +21,6 @@ const transactionSchema = new mongoose.Schema({
     default: Date.now,
   },
   valorTransacao: Number,
-  // Outros campos relacionados às transações podem ser adicionados aqui
 });
 
 const Transaction = mongoose.model('Transaction', transactionSchema);
