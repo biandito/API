@@ -1,22 +1,12 @@
 const Categoria = require('../models/categoria');
 
 // Lista
-exports.listCategorias = async (req, res) => {
-  try {
-    const categorias = await Categoria.find();
-    res.status(200).json(categorias);
-  } catch (error) {
-    console.error('Erro ao listar categorias:', error);
-    res.status(500).json({ message: 'Erro interno do servidor.' });
-  }
-};
 
 // Adicionar uma nova categoria
 exports.addCategoria = async (req, res) => {
   try {
     const { nome, descricao } = req.body;
 
-    // Verifica se os campos obrigatórios estão presentes
     if (!nome || !descricao) {
       return res.status(422).json({ message: 'Campos obrigatórios.' });
     }
@@ -35,7 +25,7 @@ exports.addCategoria = async (req, res) => {
   }
 };
 
-// Editar uma categoria existente
+// Editar
 exports.editCategoria = async (req, res) => {
   try {
     const categoriaId = req.params.id;
@@ -52,14 +42,14 @@ exports.editCategoria = async (req, res) => {
 
     await categoria.save();
 
-    res.status(200).json({ message: 'A categoria foi editada.' });
+    res.status(200).json({ message: 'Categoria editada.' });
   } catch (error) {
     console.error('Erro ao editar categoria:', error);
     res.status(500).json({ message: 'Erro interno do servidor.' });
   }
 };
 
-// Excluir  
+// Excluir
 exports.deleteCategoria = async (req, res) => {
   try {
     const categoriaId = req.params.id;
