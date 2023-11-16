@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const Item = mongoose.model('Item', {
   id: Number,
   titulo: String,
@@ -7,6 +6,7 @@ const Item = mongoose.model('Item', {
   categoria: String,
   preco: Number,
   descricao: String,
+  isbn: Number,
   status: String,
   vendedor: String
   

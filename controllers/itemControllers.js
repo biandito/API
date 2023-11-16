@@ -2,7 +2,7 @@ const Item = require('../models/items');
 
 exports.addItem = async (req, res) => {
   try {
-    const { id, titulo, autor, categoria, preco, descricao, status,vendedor } = req.body;
+    const { id, titulo, autor, categoria, preco, descricao, isbn, status,vendedor } = req.body;
 
     // Novo produto
     const newItem = new Item({
@@ -12,6 +12,7 @@ exports.addItem = async (req, res) => {
       categoria,
       preco,
       descricao,
+      isbn,
       status,
       vendedor
     });
