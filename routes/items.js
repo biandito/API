@@ -3,12 +3,14 @@ const express = require('express');
 const router = express.Router();
 const itemController = require('../controllers/itemControllers');
 
-// Adição de novos itens
+// Adicionar
 router.post('/add', itemController.addItem);
 exports.addItem = async (req, res) => {
     try {
       const { titulo, autor, categoria, preco, descricao, isbn, status, vendedor } = req.body;
-  
+      if (!titulo || !autor || !categoria || !preco || !descricao || !isbn || !status || !vendedor ) {
+        return res.status(422).json({ message: 'Campos obrigatórios não fornecidos.' });    
+      }
       const newItem = new Item({
         titulo,
         autor,
@@ -19,6 +21,7 @@ exports.addItem = async (req, res) => {
         status,
         vendedor,
       });
+      
   
       await newItem.save();
   
@@ -30,7 +33,7 @@ exports.addItem = async (req, res) => {
   };
   
 
-// Listagem de itens
+// Listar
 router.get('/', itemController.listItems);
 exports.listItems = async (req, res) => {
     try {
@@ -43,20 +46,20 @@ exports.listItems = async (req, res) => {
   };
   
 
-// Edição de itens
+// Editar
 router.put('/:id', itemController.editItem);
 exports.editItem = async (req, res) => {
     try {
       const itemId = req.params.id;
       const { titulo, autor, categoria, preco, descricao, isbn, status, vendedor } = req.body;
   
-      // Encontre o item pelo ID
+      // ID
       const item = await Item.findById(itemId);
       if (!item) {
         return res.status(404).json({ message: 'Item não encontrado.' });
       }
   
-      // Atualize os campos do item com os novos valores
+      // Atualizar campos
       item.titulo = titulo;
       item.autor = autor;
       item.categoria = categoria;
@@ -66,7 +69,7 @@ exports.editItem = async (req, res) => {
       item.status = status;
       item.vendedor = vendedor;
   
-      // Salve as alterações no banco de dados
+      // Salvar
       await item.save();
   
       res.status(200).json({ message: 'O item foi editado.' });
@@ -77,7 +80,7 @@ exports.editItem = async (req, res) => {
   };
   
 
-// Busca básica de itens
+// Busca 
 router.get('/search', itemController.searchItems);
 exports.searchItems = async (req, res) => {
     try {
