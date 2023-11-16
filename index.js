@@ -33,6 +33,10 @@ app.use('/admin', admin);
 const items = require('./routes/items');
 app.use('/items', items);
 
+// categorias //
+const categorias = require('./routes/categorias');
+app.use('/categorias', categorias);
+
 // porta teste //
 // app.listen(PORT, () => console.log(`Servidor No PORT: http://localhost:${PORT}`));
 
