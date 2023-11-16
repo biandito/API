@@ -31,7 +31,7 @@ exports.editCategoria = async (req, res) => {
     const categoriaId = req.params.id;
     const { nome, descricao } = req.body;
 
-    // Encontre a categoria pelo ID
+    // Search ID
     const categoria = await Categoria.findById(categoriaId);
     if (!categoria) {
       return res.status(404).json({ message: 'Categoria não encontrada.' });
@@ -54,7 +54,7 @@ exports.deleteCategoria = async (req, res) => {
   try {
     const categoriaId = req.params.id;
 
-    // Remover por ID
+    // Remover  ID
     await Categoria.findByIdAndDelete(categoriaId);
 
     res.status(200).json({ message: 'Categoria excluída com sucesso.' });
